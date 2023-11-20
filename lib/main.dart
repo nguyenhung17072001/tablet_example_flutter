@@ -2,38 +2,76 @@
 import 'package:flutter/material.dart';
 import 'package:tablet_example/screen/demo_1.dart';
 
+import 'screen/demo_2.dart';
+import 'screen/demo_3.dart';
+
 void main() {
-  runApp(const TabBarDemo());
+  runApp(const NavigationContainer());
 }
 
-class TabBarDemo extends StatelessWidget {
-  const TabBarDemo({super.key});
+class NavigationContainer extends StatelessWidget {
+  const NavigationContainer({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
-                Tab(text: 'Ví dụ 1'),
-                Tab(text: 'Ví dụ 2'),
-                Tab(text: 'Ví dụ 3'),
-                
-              ],
-            ),
-            title: const Text('Tabs Demo'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyTabBar(),
+          
+        //'/my-tab/home/food-detail': (context) => const FoodDetail(),  
+      },
+    );
+  }
+}
+
+
+
+
+class MyTabBar extends StatefulWidget {
+  const MyTabBar({super.key});
+
+  @override
+  _MyTabBarPageState createState() => _MyTabBarPageState();
+}
+
+class _MyTabBarPageState extends State<MyTabBar> {
+  int _currentIndex = 0;
+
+  // Danh sách các tab
+  final List<Widget> _tabs = [
+    Demo1(),
+    Demo2(),
+    //Demo3(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Demo 1',
           ),
-          body: const TabBarView(
-            children: [
-              Demo1(),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.cabin),
+            label: 'Demo 2',
+            
           ),
-        ),
+          /* BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Menu',
+          ), */
+        ],
       ),
     );
   }
