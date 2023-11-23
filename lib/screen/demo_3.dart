@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -9,12 +11,20 @@ class Demo3 extends StatefulWidget {
 }
 
 class _Demo3State extends State<Demo3> {
+  
   WebViewController controller = WebViewController()
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  
-  ..loadRequest(Uri.parse('https://flutter.dev'));
+  ..loadFile('');
+  //..loadRequest(Uri.parse('https://flutter.dev'));
   @override
   Widget build(BuildContext context) {
-    return WebViewWidget(controller: controller);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Html View'),
+      ),
+      body: SafeArea(
+        child: WebViewWidget(controller: controller),
+      ),
+    );
   }
 }

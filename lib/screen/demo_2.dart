@@ -11,13 +11,13 @@ class Demo2 extends StatefulWidget {
 class _Demo2State extends State<Demo2> {
   WebViewController controller = WebViewController()
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  ..loadHtmlString('<html><body><h1>Hello, Flutter!</h1></body></html>');
+  ..loadHtmlString('<html><body><header><h1> trang HTML</h1></header><main><p>Đây là một trang HTML cơ bản chứa một tiêu đề, một đoạn văn bản và một hình ảnh.</p><img src="duong-dan-cua-hinh-anh.jpg" alt="Mô tả hình ảnh"></main><footer><p>.</p></footer></body></html>');
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Htnl View'),
+        title: const Text('Html View'),
       ),
       body: SafeArea(
         child: WebViewWidget(controller: controller),

@@ -69,7 +69,7 @@ class _MyTabBarPageState extends State<MyTabBar> {
           ),
           /* BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Menu',
+            label: 'Demo 3',
           ), */
         ],
       ),
